@@ -16,32 +16,32 @@ export default function Contact() {
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column-reverse' }}>
           
           <div style={{ marginTop: '2rem' }}>
-            <button type="submit" className="btn btn-primary" style={{ width: '100%' }}>
+            <button type="submit" className="btn btn-primary chasing-button" style={{ width: '100%' }}>
               Send Message
             </button>
           </div>
 
           <div className="form-group" style={{ display: 'flex', flexDirection: 'column-reverse' }}>
-            <textarea className="form-input" rows="5" required></textarea>
-            <label className="form-label" style={{ marginBottom: 0, marginTop: '0.5rem' }}>Message</label>
+            <textarea className="phantom-input form-input" rows="5" required></textarea>
+            <label className="form-label low-contrast-text" style={{ marginBottom: 0, marginTop: '0.5rem' }}>Message</label>
           </div>
 
           <div className="form-group" style={{ display: 'flex', flexDirection: 'column-reverse' }}>
             <input 
               type="email" 
-              className="form-input" 
+              className="phantom-input form-input" 
               required
             />
-            <label className="form-label" style={{ fontSize: '0.75rem', marginBottom: 0, marginTop: '0.5rem' }}>Email Address *</label>
+            <label className="form-label low-contrast-text" style={{ fontSize: '0.75rem', marginBottom: 0, marginTop: '0.5rem' }}>Email Address *</label>
           </div>
           
           <div className="form-group" style={{ display: 'flex', flexDirection: 'column-reverse' }}>
             <input 
               type="text" 
-              className="form-input" 
+              className="phantom-input form-input" 
               required
             />
-            <label className="form-label" style={{ fontSize: '0.75rem', marginBottom: 0, marginTop: '0.5rem' }}>Full Name *</label>
+            <label className="form-label low-contrast-text" style={{ fontSize: '0.75rem', marginBottom: 0, marginTop: '0.5rem' }}>Full Name *</label>
           </div>
 
         </form>

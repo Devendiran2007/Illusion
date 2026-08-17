@@ -10,7 +10,6 @@ export default function Home() {
     e.preventDefault();
     setSubscribed(true);
     setTimeout(() => {
-      // CHALLENGE: Subscribe form navigates to products instead of confirming
       navigate('/products');
     }, 1000);
   };
@@ -28,22 +27,22 @@ export default function Home() {
           The operating system <br/> for your future.
         </h1>
         
-        <p style={{ color: 'var(--text-muted)', fontSize: '1.25rem', marginBottom: '3rem', maxWidth: '600px', margin: '0 auto 3rem auto' }}>
+        <p className="low-contrast-text" style={{ fontSize: '1.25rem', marginBottom: '3rem', maxWidth: '600px', margin: '0 auto 3rem auto' }}>
           Experience the most advanced platform ever built. Unparalleled speed, absolute control, and zero friction.
         </p>
 
         <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', position: 'relative', zIndex: 10 }}>
-          {/* CHALLENGE: Primary button navigates to Contact */}
+          {/* EXTREME UI: Hover Evasion */}
           <button 
-            className="btn btn-primary" 
+            className="btn btn-primary chasing-button" 
             onClick={() => navigate('/contact')}
           >
             Start Free Trial
           </button>
           
-          {/* CHALLENGE: Secondary button navigates to Account/Login instead of Products */}
+          {/* EXTREME UI: False Affordance (Looks like text, is a button) */}
           <button 
-            className="btn btn-secondary" 
+            className="btn btn-secondary fake-text" 
             onClick={() => navigate('/account')}
             style={{ padding: '0.875rem 2rem' }}
           >
@@ -58,7 +57,8 @@ export default function Home() {
           <p style={{ color: 'var(--text-muted)', marginBottom: '2rem' }}>Spots are extremely limited. Secure yours today.</p>
           
           <form onSubmit={handleSubscribe} style={{ display: 'flex', gap: '1rem', maxWidth: '400px', margin: '0 auto' }}>
-            <input type="email" className="form-input" placeholder="Enter your email..." required style={{ flexGrow: 1 }} />
+            {/* EXTREME UI: Phantom Input */}
+            <input type="email" className="phantom-input form-input" placeholder="Enter your email..." required style={{ flexGrow: 1 }} />
             <button type="submit" className="btn btn-primary" style={{ background: 'var(--accent)' }}>
               {subscribed ? 'Processing...' : 'Join Now'}
             </button>

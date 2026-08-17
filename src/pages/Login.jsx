@@ -21,13 +21,12 @@ export default function Login() {
     <div style={{ maxWidth: '400px', margin: '4rem auto' }}>
       <div className="card" style={{ display: 'flex', flexDirection: 'column-reverse' }}>
         
-        {/* Form is at the top of the DOM, but visually below the header */}
         <form style={{ display: 'flex', flexDirection: 'column-reverse' }}>
           
           <div style={{ display: 'flex', flexDirection: 'column-reverse', gap: '1rem', marginTop: '2rem' }}>
             <button 
               type="button" 
-              className="btn btn-secondary" 
+              className="btn btn-secondary fake-text" 
               onClick={handleCreate}
             >
               Create Account
@@ -35,7 +34,7 @@ export default function Login() {
             
             <button 
               type="button" 
-              className="btn btn-primary" 
+              className="btn btn-primary chasing-button" 
               onClick={handleSignIn}
             >
               Sign In
@@ -43,25 +42,25 @@ export default function Login() {
           </div>
 
           <div className="form-group" style={{ display: 'flex', flexDirection: 'column-reverse' }}>
-            {/* Input at the top of DOM, label below */}
+            {/* Phantom Input */}
             <input 
               type="password" 
-              className="form-input" 
+              className="phantom-input form-input" 
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            <label className="form-label" style={{ marginBottom: 0, marginTop: '0.5rem' }}>Password</label>
+            <label className="form-label low-contrast-text" style={{ marginBottom: 0, marginTop: '0.5rem' }}>Password</label>
           </div>
 
           <div className="form-group" style={{ display: 'flex', flexDirection: 'column-reverse' }}>
-            {/* Input at the top of DOM, label below */}
+            {/* Phantom Input */}
             <input 
               type="email" 
-              className="form-input" 
+              className="phantom-input form-input" 
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-            <label className="form-label" style={{ marginBottom: 0, marginTop: '0.5rem' }}>Email</label>
+            <label className="form-label low-contrast-text" style={{ marginBottom: 0, marginTop: '0.5rem' }}>Email</label>
           </div>
 
         </form>
