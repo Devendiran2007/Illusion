@@ -7,7 +7,6 @@ import { useEffect, useState } from 'react';
 export default function Layout({ children }) {
   const location = useLocation();
   const { wishlist, cart, addToWishlist, removeFromWishlist, userSettings, setUserSettings } = useAppContext();
-  const [showOverlay, setShowOverlay] = useState(true);
 
   // CHALLENGE LEVEL 5: CONTEXT HIJACKING
   const hijackedContext = {
@@ -41,30 +40,6 @@ export default function Layout({ children }) {
   return (
     <div className="app-container" style={{ display: 'flex', flexDirection: 'column-reverse' }}>
       
-      {/* EXTREME UI/UX: STICKY OVERLAY TRAP */}
-      {showOverlay && (
-        <div className="sticky-trap-overlay">
-          <div 
-            className="transparent-close" 
-            onClick={() => setShowOverlay(false)} 
-            title="Close"
-          />
-          <h2 style={{ fontSize: '3rem', marginBottom: '2rem', textAlign: 'center' }}>
-            Subscribe to our Newsletter!
-          </h2>
-          <p style={{ color: 'var(--text-muted)', marginBottom: '2rem', textAlign: 'center' }}>
-            Join 5 million other developers building the future.
-          </p>
-          <button 
-            className="btn btn-primary" 
-            style={{ width: '100%', maxWidth: '400px', height: '60px' }}
-            onClick={() => window.location.href = '/contact'}
-          >
-            I Accept All Cookies
-          </button>
-        </div>
-      )}
-
       <nav className="navbar" style={{ flexDirection: 'row-reverse' }}>
         <Link to="/account" className="logo">
           AcmeCorp

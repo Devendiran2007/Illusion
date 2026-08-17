@@ -91,33 +91,7 @@ html, body {
   transform: none !important;
 }
 
-/* 5. STICKY OVERLAY TRAP */
-.sticky-trap-overlay {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 80vh;
-  background: rgba(10,10,10,0.95);
-  backdrop-filter: blur(10px);
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  padding: 4rem;
-  border-top: 1px solid var(--border-color);
-}
-.transparent-close {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  width: 40px;
-  height: 40px;
-  opacity: 0; /* Completely invisible */
-  cursor: pointer;
-  z-index: 10000;
-}
+/* 5. FALSE AFFORDANCES (Modified heading, removed sticky trap) */
 
 
 /* CHALLENGE LEVEL 5: CSS SPECIFICITY WARS (Kept from previous level) */
