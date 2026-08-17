@@ -1,0 +1,129 @@
+import { useState, useEffect } from 'react';
+import { Settings, Search } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { useAppContext } from '../context/AppContext';
+
+const INITIAL_PRODUCTS = [
+  { id: 1, name: 'Neural Processor Alpha', price: 1499, inStock: true, desc: 'Quantum-accelerated neural network training unit.' },
+  { id: 2, name: 'Synaptic Core', price: 899, inStock: true, desc: 'Next-generation memory persistence engine.' },
+  { id: 3, name: 'Quantum Gateway', price: 2499, inStock: false, desc: 'Zero-latency cross-region routing module.' },
+  { id: 4, name: 'Flux Matrix', price: 599, inStock: true, desc: 'Dynamic load balancing for edge networks.' },
+];
+
+export default function Products() {
+  const navigate = useNavigate();
+  // CHALLENGE LEVEL 5: VARIABLE SHADOWING
+  const [products, setProducts] = useState(INITIAL_PRODUCTS);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  
+  // Destructuring aliasing: `addToCart` is actually `removeFromWishlist`
+  const { removeFromWishlist: addToCart } = useAppContext();
+
+  // CHALLENGE LEVEL 5: REACT KEY SHUFFLE TRAP
+  // We use `index` for the key in the map below, but we shuffle the array in a timeout,
+  // causing React to reconcile state into the wrong DOM nodes.
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setProducts(prev => [...prev].sort(() => Math.random() - 0.5));
+    }, 5000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column-reverse' }}>
+      
+      <div style={{ display: 'flex', flexWrap: 'wrap-reverse', gap: '2rem', justifyContent: 'flex-end' }}>
+        {products.map((p, index) => (
+          // Bad Key Trap: Using index while array order changes
+          <div key={index} className="card" style={{ padding: '0', cursor: 'pointer', transition: 'transform 0.3s', flex: '1 1 280px', display: 'flex', flexDirection: 'column-reverse' }}
+               onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-5px)'; }}
+               onMouseLeave={(e) => { e.currentTarget.style.transform = 'none'; }}
+               onClick={() => navigate('/checkout')}
+          >
+            <div style={{ height: '160px', background: 'rgba(255,255,255,0.02)', borderTop: '1px solid var(--border-color)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <span style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>Image placeholder</span>
+            </div>
+            
+            <div style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column-reverse' }}>
+              
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexDirection: 'row-reverse', marginTop: '1.5rem' }}>
+                <span style={{ fontSize: '1.25rem', fontWeight: '700' }}>
+                  ${p.price.toLocaleString()}
+                </span>
+                
+                {/* 
+                  CHALLENGE LEVEL 5: EVENT BUBBLING & ALIAS TRAP
+                  This button looks correct. But `addToCart` is aliased to `removeFromWishlist`.
+                  Additionally, the SVG click capture in Layout might eat the click if they click the text? 
+                  No, Layout eats SVG clicks. Let's add an SVG to this button so it gets eaten!
+                */}
+                <button 
+                  className="btn btn-primary" 
+                  style={{ padding: '0.5rem 1rem', fontSize: '0.8rem' }}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    addToCart(p.id); // Actually calls removeFromWishlist
+                  }}
+                >
+                  <Search size={14} style={{ marginRight: '0.5rem' }} /> Add to Cart
+                </button>
+              </div>
+
+              <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginBottom: '0.5rem', minHeight: '40px' }}>{p.desc}</p>
+              <h3 style={{ fontSize: '1.25rem', marginBottom: '0.5rem' }}>{p.name}</h3>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {isSearchOpen && (
+        <div style={{ margin: '2rem 0' }}>
+          <div className="form-group" style={{ position: 'relative' }}>
+            <Search size={20} style={{ position: 'absolute', right: '1rem', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }} />
+            <input 
+              type="text" 
+              className="form-input" 
+              placeholder="Search components..." 
+              style={{ paddingRight: '3rem', textAlign: 'right' }} 
+            />
+          </div>
+        </div>
+      )}
+
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '3rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '1rem', flexDirection: 'row-reverse' }}>
+        <div style={{ textAlign: 'right' }}>
+          <h1 style={{ fontSize: '2.5rem', fontWeight: '700' }}>Hardware</h1>
+          <p style={{ color: 'var(--text-muted)' }}>Enterprise-grade infrastructure.</p>
+        </div>
+        
+        <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', flexDirection: 'row-reverse' }}>
+          <button 
+            className="btn btn-secondary" 
+            style={{ padding: '0.5rem' }} 
+            onClick={() => setIsSearchOpen(!isSearchOpen)}
+            aria-label="Search Settings"
+          >
+            <Settings size={20} />
+          </button>
+          
+          <div style={{ display: 'flex', gap: '0.5rem', flexDirection: 'row-reverse' }}>
+            <button 
+              className="btn btn-primary"
+              onClick={() => setProducts([...products].reverse())}
+              style={{ padding: '0.5rem 1rem', fontSize: '0.85rem' }}
+            >
+              All Models
+            </button>
+            <button 
+              className="btn btn-secondary"
+              onClick={() => setProducts([])}
+              style={{ padding: '0.5rem 1rem', fontSize: '0.85rem' }}
+            >
+              Available Now
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
