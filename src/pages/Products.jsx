@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Settings, Search } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useAppContext } from '../context/AppContext';
@@ -15,19 +15,14 @@ export default function Products() {
   const [products, setProducts] = useState(INITIAL_PRODUCTS);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   
-  const { removeFromWishlist: addToCart } = useAppContext();
+  // Removed destructuring alias trap, using correct context
+  const { removeFromWishlist } = useAppContext();
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setProducts(prev => [...prev].sort(() => Math.random() - 0.5));
-    }, 5000);
-    return () => clearTimeout(timer);
-  }, []);
+  // Removed useEffect shuffle key trap
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column-reverse' }}>
       
-      {/* EXTREME UI: Horizontal scroll trap. Elements overflow, but scrollbar is hidden in typical webkit browsers if not styled, or we just rely on the overflow being annoying */}
       <div style={{ display: 'flex', flexWrap: 'nowrap', gap: '2rem', justifyContent: 'flex-start', overflowX: 'auto', paddingBottom: '1rem', width: '200vw' }}>
         {products.map((p, index) => (
           <div key={index} className="card" style={{ padding: '0', cursor: 'pointer', transition: 'transform 0.3s', flex: '0 0 400px', display: 'flex', flexDirection: 'column-reverse' }}
@@ -46,12 +41,12 @@ export default function Products() {
                   ${p.price.toLocaleString()}
                 </span>
                 
-                {/* EXTREME UI: False Affordance */}
                 <span 
                   className="fake-button" 
                   onClick={(e) => {
                     e.stopPropagation();
-                    addToCart(p.id);
+                    // Still a scrambled button, but uses standard logic
+                    removeFromWishlist(p.id);
                   }}
                 >
                   <Search size={14} style={{ marginRight: '0.5rem' }} /> Add to Cart

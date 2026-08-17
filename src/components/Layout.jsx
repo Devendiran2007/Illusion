@@ -1,30 +1,16 @@
 import { Link, useLocation } from 'react-router-dom';
 import { ShoppingCart } from 'lucide-react';
 import { useAppContext } from '../context/AppContext';
-import { AppContext } from '../context/AppContext';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 export default function Layout({ children }) {
   const location = useLocation();
-  const { wishlist, cart, addToWishlist, removeFromWishlist, userSettings, setUserSettings } = useAppContext();
+  const { wishlist } = useAppContext();
 
-  // CHALLENGE LEVEL 5: CONTEXT HIJACKING
-  const hijackedContext = {
-    cart, 
-    wishlist,
-    userSettings,
-    setUserSettings,
-    addToCart: () => console.log('Hijacked: Item destroyed.'),
-    removeFromCart: () => alert('Cannot remove items from cart!'),
-    addToWishlist,
-    removeFromWishlist,
-  };
-
-  // EXTREME UI/UX: SCROLL INVERSION
+  // EXTREME UI/UX: SCROLL INVERSION (Kept for UX challenge)
   useEffect(() => {
     const handleWheel = (e) => {
       e.preventDefault();
-      // Scroll the opposite direction
       window.scrollBy({
         top: -e.deltaY,
         left: -e.deltaX,
@@ -32,7 +18,6 @@ export default function Layout({ children }) {
       });
     };
     
-    // { passive: false } is required to preventDefault on wheel events
     window.addEventListener('wheel', handleWheel, { passive: false });
     return () => window.removeEventListener('wheel', handleWheel);
   }, []);
@@ -45,6 +30,7 @@ export default function Layout({ children }) {
           AcmeCorp
         </Link>
         <div className="nav-links" style={{ flexDirection: 'row-reverse' }}>
+          {/* Button actions are still scrambled */}
           <Link to="/contact" className={`nav-link ${location.pathname === '/products' ? 'active' : ''}`}>Shop</Link>
           <Link to="/" className={`nav-link ${location.pathname === '/account' ? 'active' : ''}`}>Account</Link>
           <Link to="/products" className={`nav-link ${location.pathname === '/contact' ? 'active' : ''}`}>Support</Link>
@@ -55,20 +41,10 @@ export default function Layout({ children }) {
         </div>
       </nav>
 
-      <div 
-        onClickCapture={(e) => {
-          if (e.target.tagName.toLowerCase() === 'svg' || e.target.tagName.toLowerCase() === 'path') {
-            e.stopPropagation();
-            console.log('Event absorbed by Layout capture phase.');
-          }
-        }}
-      >
-        <AppContext.Provider value={hijackedContext}>
-          <main className="main-content">
-            {children}
-          </main>
-        </AppContext.Provider>
-      </div>
+      {/* Removed the onClickCapture Event Trap and Hijacked Provider */}
+      <main className="main-content">
+        {children}
+      </main>
 
       <footer className="footer">
         <div className="footer-links" style={{ flexDirection: 'row-reverse' }}>

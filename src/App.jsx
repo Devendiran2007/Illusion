@@ -2,22 +2,20 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout';
 import { AppProvider } from './context/AppContext';
 
-// CHALLENGE LEVEL 5: COMPONENT MISDIRECTION (ROUTER LIE)
-// We alias default exports to intentionally render the wrong pages.
-import { default as Checkout } from './pages/Home';
-import { default as Contact } from './pages/Login';
-import { default as Account } from './pages/Products';
-import { default as Detail } from './pages/Detail';
-import { default as Products } from './pages/Checkout';
-import { default as Login } from './pages/Account';
-import { default as Home } from './pages/Contact';
+// Restored correct routing (removed the Level 5 component aliases)
+import Home from './pages/Home';
+import Login from './pages/Login';
+import Products from './pages/Products';
+import Detail from './pages/Detail';
+import Checkout from './pages/Checkout';
+import Account from './pages/Account';
+import Contact from './pages/Contact';
 
 function App() {
   return (
     <AppProvider>
       <Router>
         <Layout>
-          {/* These look perfectly normal, but the imports above are lying. */}
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
