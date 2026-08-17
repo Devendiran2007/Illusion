@@ -1,13 +1,85 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>dark-pattern-audit</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AcmeCorp Premium SaaS</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="app-container">
+        
+        <nav class="navbar">
+            <a href="account.html" class="logo">AcmeCorp</a>
+            <div class="nav-links">
+                <!-- Links scrambled -->
+                <a href="contact.html" class="nav-link">Shop</a>
+                <a href="index.html" class="nav-link">Account</a>
+                <a href="products.html" class="nav-link">Support</a>
+                <a href="login.html" class="nav-link" style="background: rgba(255,255,255,0.05); padding: 0.5rem 1rem; border-radius: 8px;">
+                    🛒 <span class="wishlist-counter" style="font-weight: 600;">0</span>
+                </a>
+            </div>
+        </nav>
+
+        <main class="main-content">
+            <div style="position: relative; min-height: 80vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+                
+                <div style="z-index: 1; position: relative;">
+                    <div style="display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(255,255,255,0.05); padding: 0.5rem 1rem; border-radius: 2rem; border: 1px solid rgba(255,255,255,0.1); margin-bottom: 2rem;">
+                        ✨ <span style="font-size: 0.85rem; font-weight: 500; color: var(--text-muted);">Introducing Acme AI v2.0</span>
+                    </div>
+
+                    <h1 style="font-size: 4.5rem; font-weight: 700; margin-bottom: 1.5rem; line-height: 1.1; background: linear-gradient(180deg, #fff 0%, rgba(255,255,255,0.6) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                        The operating system <br> for your future.
+                    </h1>
+                    
+                    <p class="low-contrast-text" style="font-size: 1.25rem; margin-bottom: 3rem; max-width: 600px; margin: 0 auto 3rem auto;">
+                        Experience the most advanced platform ever built. Unparalleled speed, absolute control, and zero friction.
+                    </p>
+
+                    <div style="display: flex; justify-content: center; gap: 1rem; position: relative; z-index: 10;">
+                        <!-- Button actions scrambled -->
+                        <button class="btn btn-primary chasing-button" onclick="window.location.href='contact.html'">
+                            Start Free Trial
+                        </button>
+                        
+                        <span class="btn btn-secondary fake-text" onclick="window.location.href='account.html'" style="padding: 0.875rem 2rem;">
+                            Explore Platform ➔
+                        </span>
+                    </div>
+                </div>
+
+                <div style="margin-top: 6rem; width: 100%; max-width: 800px; position: relative; z-index: 10;">
+                    <div class="card" style="padding: 3rem; text-align: center; background: rgba(236, 72, 153, 0.05); border-color: rgba(236, 72, 153, 0.2);">
+                        <h2 style="font-size: 2rem; margin-bottom: 1rem;">Join the Private Beta</h2>
+                        <p style="color: var(--text-muted); margin-bottom: 2rem;">Spots are extremely limited. Secure yours today.</p>
+                        
+                        <!-- Form submits to products -->
+                        <form onsubmit="event.preventDefault(); setTimeout(() => window.location.href='products.html', 1000);" style="display: flex; gap: 1rem; max-width: 400px; margin: 0 auto;">
+                            <input type="email" class="phantom-input form-input" placeholder="Enter your email..." required style="flex-grow: 1;">
+                            <button type="submit" class="btn btn-primary" style="background: var(--accent);">
+                                Join Now
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <div class="footer-links">
+                <a href="contact.html" class="footer-link">Privacy Policy</a>
+                <a href="login.html" class="footer-link">Terms of Service</a>
+                <a href="checkout.html" class="footer-link">Settings</a>
+                <a href="index.html" class="footer-link">Help Center</a>
+            </div>
+            <p style="color: var(--text-muted); font-size: 0.85rem;">
+                &copy; 2026 Acme Corp. Premium SaaS. All rights reserved.
+            </p>
+        </footer>
+
+    </div>
+</body>
 </html>

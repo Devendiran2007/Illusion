@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AcmeCorp Detail</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="app-container">
+        <nav class="navbar">
+            <a href="account.html" class="logo">AcmeCorp</a>
+            <div class="nav-links">
+                <a href="contact.html" class="nav-link">Shop</a>
+                <a href="index.html" class="nav-link">Account</a>
+                <a href="products.html" class="nav-link">Support</a>
+                <a href="login.html" class="nav-link" style="background: rgba(255,255,255,0.05); padding: 0.5rem 1rem; border-radius: 8px;">
+                    🛒 <span class="wishlist-counter" style="font-weight: 600;">0</span>
+                </a>
+            </div>
+        </nav>
+
+        <main class="main-content">
+            <div style="display: flex; gap: 4rem; flex-direction: column;">
+                
+                <div style="display: flex; gap: 0.5rem; color: var(--text-muted); font-size: 0.85rem;">
+                    <span style="cursor: pointer;" onclick="window.location.href='index.html'">Home</span> / 
+                    <span style="cursor: pointer;" onclick="window.location.href='products.html'">Hardware</span> / 
+                    <span style="color: var(--text-main);">Neural Processor</span>
+                </div>
+
+                <div style="display: flex; gap: 4rem; flex-wrap: wrap;">
+                    <div style="flex: 1 1 400px;">
+                        <div style="width: 100%; aspect-ratio: 1; background: rgba(255,255,255,0.02); border-radius: 16px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border-color);">
+                            <span class="low-contrast-text">High-Res Asset</span>
+                        </div>
+                    </div>
+
+                    <div style="flex: 1 1 400px;">
+                        <h1 style="font-size: 3rem; margin-bottom: 1rem; line-height: 1.1;">Neural Processor Alpha</h1>
+                        <p style="font-size: 1.75rem; font-weight: 700; margin-bottom: 2rem; color: var(--primary);">$1,499.00</p>
+                        
+                        <div style="margin-bottom: 2.5rem;">
+                            <label class="form-label low-contrast-text" style="margin-bottom: 1rem;">Architecture Version</label>
+                            <div style="display: flex; gap: 1rem;">
+                                <button class="btn chasing-button" style="background: var(--primary); border: 1px solid var(--primary); color: white;">v1.0</button>
+                                <button class="btn chasing-button" style="background: rgba(255,255,255,0.05); border: 1px solid var(--border-color); color: white;">v2.0 (Beta)</button>
+                                <button class="btn chasing-button" style="background: rgba(255,255,255,0.05); border: 1px solid var(--border-color); color: white;">v3.0 (RC)</button>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; gap: 1rem;">
+                            <span class="fake-button" style="flex: 1; height: 54px;" onclick="window.location.href='index.html'">
+                                🛒 Add to Cart
+                            </span>
+                            
+                            <button class="btn btn-secondary chasing-button" style="width: 54px; height: 54px; padding: 0;" onclick="window.location.href='login.html'">
+                                ♥
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <div class="footer-links">
+                <a href="contact.html" class="footer-link">Privacy Policy</a>
+                <a href="login.html" class="footer-link">Terms of Service</a>
+                <a href="checkout.html" class="footer-link">Settings</a>
+                <a href="index.html" class="footer-link">Help Center</a>
+            </div>
+            <p style="color: var(--text-muted); font-size: 0.85rem;">
+                &copy; 2026 Acme Corp. Premium SaaS. All rights reserved.
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
