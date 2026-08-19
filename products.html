@@ -1,100 +1,515 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>AcmeCorp Products</title>
+
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
+
+    <style>
+        /* Make sure the page stays in normal top-to-bottom order */
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100%;
+        }
+
+        body {
+            min-height: 100vh;
+        }
+
+        .app-container {
+            min-height: 100vh;
+            display: flex !important;
+            flex-direction: column !important;
+        }
+
+        .main-content {
+            flex: 1 0 auto;
+        }
+
+        .products-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: flex-start;
+            padding-bottom: 2rem;
+        }
+
+        .product-card {
+            padding: 0;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            flex: 1 1 350px;
+            max-width: 400px;
+            display: flex !important;
+            flex-direction: column !important;
+            overflow: hidden;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+            background: rgba(255, 255, 255, 0.02);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .product-info {
+            padding: 1.5rem;
+            display: flex !important;
+            flex-direction: column !important;
+        }
+
+        .product-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1.5rem;
+            gap: 1rem;
+        }
+
+        .footer {
+            position: relative !important;
+            margin-top: 2rem;
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+
+            .main-content {
+                padding: 2rem 1rem;
+            }
+
+            .products-grid {
+                flex-direction: column;
+            }
+
+            .product-card {
+                max-width: 100%;
+                width: 100%;
+            }
+
+            .product-bottom {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+        }
+    </style>
+
 </head>
+
+
 <body>
-    <div class="app-container">
-        <nav class="navbar">
-            <a href="account.html" class="logo">AcmeCorp</a>
-            <div class="nav-links">
-                <a href="contact.html" class="nav-link active">Shop</a>
-                <a href="index.html" class="nav-link">Account</a>
-                <a href="products.html" class="nav-link">Support</a>
-                <a href="login.html" class="nav-link" style="background: rgba(255,255,255,0.05); padding: 0.5rem 1rem; border-radius: 8px;">
-                    🛒 <span class="wishlist-counter" style="font-weight: 600;">0</span>
-                </a>
-            </div>
-        </nav>
 
-        <main class="main-content">
-            <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; border-bottom: 1px solid var(--border-color); padding-bottom: 1rem; flex-direction: row-reverse;">
-                <div style="text-align: right;">
-                    <h1 style="font-size: 2.5rem; font-weight: 700;">Hardware</h1>
-                    <p class="low-contrast-text">Enterprise-grade infrastructure.</p>
-                </div>
-                
-                <div style="display: flex; gap: 1rem; align-items: center; flex-direction: row-reverse;">
-                    <button class="btn btn-secondary chasing-button" style="padding: 0.5rem;" aria-label="Search Settings">
-                        ⚙️
+<div class="app-container">
+
+
+    <!-- =====================================================
+         NAVBAR
+         ===================================================== -->
+
+    <nav class="navbar">
+
+        <a href="index.html" class="logo">
+            AcmeCorp
+        </a>
+
+
+        <div class="nav-links">
+
+            <a
+                href="products.html"
+                class="nav-link active"
+            >
+                Shop
+            </a>
+
+            <a
+                href="account.html"
+                class="nav-link"
+            >
+                Account
+            </a>
+
+            <a
+                href="contact.html"
+                class="nav-link"
+            >
+                Support
+            </a>
+
+            <a
+                href="checkout.html"
+                class="nav-link"
+                style="
+                    background: rgba(255,255,255,0.05);
+                    padding: 0.5rem 1rem;
+                    border-radius: 8px;
+                "
+            >
+                🛒
+
+                <span
+                    class="wishlist-counter"
+                    style="font-weight: 600;"
+                >
+                    0
+                </span>
+
+            </a>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+         ===================================================== -->
+
+    <main class="main-content">
+
+
+        <!-- Page Header -->
+
+        <div
+            style="
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-end;
+                margin-bottom: 3rem;
+                border-bottom: 1px solid var(--border-color);
+                padding-bottom: 1rem;
+                gap: 2rem;
+                flex-wrap: wrap;
+            "
+        >
+
+            <div>
+
+                <h1
+                    style="
+                        font-size: 2.5rem;
+                        font-weight: 700;
+                    "
+                >
+                    Hardware
+                </h1>
+
+                <p class="low-contrast-text">
+                    Enterprise-grade infrastructure.
+                </p>
+
+            </div>
+
+
+            <div
+                style="
+                    display: flex;
+                    gap: 1rem;
+                    align-items: center;
+                    flex-wrap: wrap;
+                "
+            >
+
+                <button
+                    class="btn btn-secondary"
+                    style="padding: 0.5rem;"
+                    aria-label="Search Settings"
+                    onclick="alert('Search settings')"
+                >
+                    ⚙️
+                </button>
+
+
+                <div
+                    style="
+                        display: flex;
+                        gap: 0.5rem;
+                    "
+                >
+
+                    <button
+                        class="btn btn-primary"
+                        onclick="alert('Showing all models')"
+                        style="
+                            padding: 0.5rem 1rem;
+                            font-size: 0.85rem;
+                        "
+                    >
+                        All Models
                     </button>
-                    
-                    <div style="display: flex; gap: 0.5rem; flex-direction: row-reverse;">
-                        <!-- Scrambled filters -->
-                        <button class="btn btn-primary" onclick="alert('Filtering reversed...')" style="padding: 0.5rem 1rem; font-size: 0.85rem;">
-                            All Models
+
+
+                    <button
+                        class="btn btn-secondary"
+                        onclick="alert('Showing available products')"
+                        style="
+                            padding: 0.5rem 1rem;
+                            font-size: 0.85rem;
+                        "
+                    >
+                        Available Now
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =====================================================
+             PRODUCTS
+             ===================================================== -->
+
+        <div class="products-grid">
+
+
+            <!-- =================================================
+                 PRODUCT 1
+                 ================================================= -->
+
+            <div
+                class="card product-card"
+                onclick="window.location.href='checkout.html'"
+            >
+
+                <!-- Product Image -->
+
+                <img
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoI73nQFy9qfFoL2rwwJIT8gOh4T5Fl9GlnP3Lx15a_A&s=10"
+                    alt="Neural Processor Alpha"
+                    class="product-image"
+                >
+
+
+                <!-- Product Information -->
+
+                <div class="product-info">
+
+                    <h3
+                        style="
+                            font-size: 1.25rem;
+                            margin-bottom: 0.5rem;
+                        "
+                    >
+                        Neural Processor Alpha
+                    </h3>
+
+
+                    <p
+                        class="low-contrast-text"
+                        style="
+                            font-size: 0.9rem;
+                            margin-bottom: 0.5rem;
+                            min-height: 40px;
+                        "
+                    >
+                        Quantum-accelerated neural network
+                        training unit.
+                    </p>
+
+
+                    <div class="product-bottom">
+
+                        <span
+                            style="
+                                font-size: 1.25rem;
+                                font-weight: 700;
+                            "
+                        >
+                            $1,499
+                        </span>
+
+
+                        <button
+                            type="button"
+                            class="btn btn-primary"
+                            onclick="
+                                event.stopPropagation();
+                                addToCart(1);
+                            "
+                        >
+                            ➕ Add to Cart
                         </button>
-                        <button class="btn btn-secondary" onclick="alert('List cleared.')" style="padding: 0.5rem 1rem; font-size: 0.85rem;">
-                            Available Now
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 PRODUCT 2
+                 ================================================= -->
+
+            <div
+                class="card product-card"
+                onclick="window.location.href='checkout.html'"
+            >
+
+                <!-- Product Image -->
+
+                <img
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoI73nQFy9qfFoL2rwwJIT8gOh4T5Fl9GlnP3Lx15a_A&s=10"
+                    alt="Synaptic Core"
+                    class="product-image"
+                >
+
+
+                <!-- Product Information -->
+
+                <div class="product-info">
+
+                    <h3
+                        style="
+                            font-size: 1.25rem;
+                            margin-bottom: 0.5rem;
+                        "
+                    >
+                        Synaptic Core
+                    </h3>
+
+
+                    <p
+                        class="low-contrast-text"
+                        style="
+                            font-size: 0.9rem;
+                            margin-bottom: 0.5rem;
+                            min-height: 40px;
+                        "
+                    >
+                        Next-generation memory persistence
+                        engine.
+                    </p>
+
+
+                    <div class="product-bottom">
+
+                        <span
+                            style="
+                                font-size: 1.25rem;
+                                font-weight: 700;
+                            "
+                        >
+                            $899
+                        </span>
+
+
+                        <button
+                            type="button"
+                            class="btn btn-primary"
+                            onclick="
+                                event.stopPropagation();
+                                addToCart(2);
+                            "
+                        >
+                            ➕ Add to Cart
                         </button>
-                    </div>
-                </div>
-            </div>
 
-            <div style="display: flex; flex-wrap: nowrap; gap: 2rem; justify-content: flex-start; overflow-x: auto; padding-bottom: 1rem; width: 200vw;">
-                <!-- Product 1 -->
-                <div class="card" style="padding: 0; cursor: pointer; transition: transform 0.3s; flex: 0 0 400px; display: flex; flex-direction: column-reverse;" onclick="window.location.href='checkout.html'">
-                    <div style="height: 160px; background: rgba(255,255,255,0.02); border-top: 1px solid var(--border-color); display: flex; align-items: center; justify-content: center;">
-                        <span class="low-contrast-text" style="font-size: 0.85rem;">Image placeholder</span>
                     </div>
-                    
-                    <div style="padding: 1.5rem; display: flex; flex-direction: column-reverse;">
-                        <div style="display: flex; justify-content: space-between; align-items: center; flex-direction: row-reverse; margin-top: 1.5rem;">
-                            <span style="font-size: 1.25rem; font-weight: 700;">$1,499</span>
-                            <!-- Scrambled button, fake affordance -->
-                            <span class="fake-button loop-link" onclick="event.stopPropagation(); removeFromWishlist(1)">
-                                ➕ Add to Cart
-                            </span>
-                        </div>
-                        <p class="low-contrast-text" style="font-size: 0.9rem; margin-bottom: 0.5rem; min-height: 40px;">Quantum-accelerated neural network training unit.</p>
-                        <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem;">Neural Processor Alpha</h3>
-                    </div>
+
                 </div>
 
-                <!-- Product 2 -->
-                <div class="card" style="padding: 0; cursor: pointer; transition: transform 0.3s; flex: 0 0 400px; display: flex; flex-direction: column-reverse;" onclick="window.location.href='checkout.html'">
-                    <div style="height: 160px; background: rgba(255,255,255,0.02); border-top: 1px solid var(--border-color); display: flex; align-items: center; justify-content: center;">
-                        <span class="low-contrast-text" style="font-size: 0.85rem;">Image placeholder</span>
-                    </div>
-                    <div style="padding: 1.5rem; display: flex; flex-direction: column-reverse;">
-                        <div style="display: flex; justify-content: space-between; align-items: center; flex-direction: row-reverse; margin-top: 1.5rem;">
-                            <span style="font-size: 1.25rem; font-weight: 700;">$899</span>
-                            <span class="fake-button loop-link" onclick="event.stopPropagation(); removeFromWishlist(2)">
-                                ➕ Add to Cart
-                            </span>
-                        </div>
-                        <p class="low-contrast-text" style="font-size: 0.9rem; margin-bottom: 0.5rem; min-height: 40px;">Next-generation memory persistence engine.</p>
-                        <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem;">Synaptic Core</h3>
-                    </div>
-                </div>
             </div>
-        </main>
 
-        <footer class="footer">
-            <div class="footer-links">
-                <a href="contact.html" class="footer-link">Privacy Policy</a>
-                <a href="login.html" class="footer-link">Terms of Service</a>
-                <a href="checkout.html" class="footer-link">Settings</a>
-                <a href="index.html" class="footer-link">Help Center</a>
-            </div>
-            <p style="color: var(--text-muted); font-size: 0.85rem;">
-                &copy; 2026 Acme Corp. Premium SaaS. All rights reserved.
-            </p>
-        </footer>
-    </div>
+        </div>
+
+    </main>
+
+
+
+    <!-- =====================================================
+         FOOTER
+         ===================================================== -->
+
+    <footer class="footer">
+
+        <div class="footer-links">
+
+            <a
+                href="contact.html"
+                class="footer-link"
+            >
+                Privacy Policy
+            </a>
+
+
+            <a
+                href="login.html"
+                class="footer-link"
+            >
+                Terms of Service
+            </a>
+
+
+            <a
+                href="account.html"
+                class="footer-link"
+            >
+                Settings
+            </a>
+
+
+            <a
+                href="index.html"
+                class="footer-link"
+            >
+                Help Center
+            </a>
+
+        </div>
+
+
+        <p
+            style="
+                color: var(--text-muted);
+                font-size: 0.85rem;
+            "
+        >
+            &copy; 2026 Acme Corp. Premium SaaS.
+            All rights reserved.
+        </p>
+
+    </footer>
+
+
+</div>
+
+
+
+<!-- =====================================================
+     OPTIONAL CART FUNCTION
+     ===================================================== -->
+
+<script>
+
+    function addToCart(productId) {
+
+        alert(
+            "Product " + productId + " added to cart."
+        );
+
+    }
+
+</script>
+
 </body>
 </html>
